@@ -1,0 +1,36 @@
+Sub Transparency()
+    Sheets(1).Shapes("TOP").Fill.Transparency = Sheets(1).Range("G32") / 100
+End Sub
+
+Sub Set_TOP()
+    Dim img As FileDialog
+    
+    Set img = Application.FileDialog(msoFileDialogFilePicker)
+    img.Title = "Select TOP"
+    
+    img.Filters.Clear
+    img.Filters.Add "Images", "*.png; *.jpg; *.jpeg, 1"
+    
+    If img.Show = -1 Then
+        a = img.SelectedItems(1)
+        Set Shape = ActiveSheet.Shapes("TOP")
+        Shape.Fill.UserPicture a
+        
+    End If
+End Sub
+Sub Set_BOTTOM()
+    Dim img As FileDialog
+    
+    Set img = Application.FileDialog(msoFileDialogFilePicker)
+    img.Title = "Select BOTTOM"
+    
+    img.Filters.Clear
+    img.Filters.Add "Images", "*.png; *.jpg; *.jpeg, 1"
+    
+    If img.Show = -1 Then
+        a = img.SelectedItems(1)
+        Set Shape = ActiveSheet.Shapes("BOTTOM")
+        Shape.Fill.UserPicture a
+        Shape.Flip msoFlipVertical
+    End If
+End Sub
